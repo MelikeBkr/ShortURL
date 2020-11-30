@@ -1,0 +1,29 @@
+{
+  "name": "urlshortener",
+  "version": "1.0.0",
+  "description": "URL Shortener Service",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "npx nodemon src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MelikeBkr"
+  },
+
+  "author": "Melike BAKIR",
+  "license": "MIT",
+  "devDependencies": {
+    "nodemon": "^1.18.9"
+  },
+  "dependencies": {
+    "express": "^4.16.4",
+    "mongodb": "^3.6.3",
+    "mongoose": "^5.10.19",
+    "nanoid": "^2.0.1",
+    "body-parser": "^1.18.3"
+  },
+  "engines": {
+    "node": "11.2.0"
+  }
+}
