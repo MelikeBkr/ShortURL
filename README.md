@@ -36,6 +36,6 @@ Validity check for the URL
 
 #### db.js (Database Operations)
 
-##Architecture:
+## Architecture:
 - 3-Tier Architecture is used
 - APIs are based on REST
