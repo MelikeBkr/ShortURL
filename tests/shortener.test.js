@@ -2,7 +2,8 @@ const request = require('supertest')
 const app = require('../src/index')
 const nanoid = require('nanoid');
 
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
+const { response } = require('express');
 const databaseName = 'shortener'
 
 beforeAll(async () => {
@@ -41,5 +42,13 @@ describe('Post Nonexistent Address', () => {
       })
     expect(res.statusCode).toEqual(404)
     expect(res.error.text).toBe('{\"error\":\"Address not found!\"}')
+  })
+})
+
+describe('GET - URL Direction', () => {
+  it('should perform GET and the status code should be 302', async () => {
+    const requestGet = '/RdXgUTT';
+    const respond = await request(app).get(requestGet);
+    expect(respond.statusCode).toBe(302);
   })
 })
