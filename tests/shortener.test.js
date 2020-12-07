@@ -10,7 +10,6 @@ beforeAll(async () => {
   const url = `mongodb://127.0.0.1/${databaseName}`
   await mongoose.connect(url, { useNewUrlParser: true })
 })
-
 describe('Post Endpoints', () => {
   it('should create a new post', async () => {
     const res = await request(app)
@@ -22,6 +21,7 @@ describe('Post Endpoints', () => {
     expect(res.body).toHaveProperty('uniqueStringID')
   })
 })
+
 describe('Post Invalid Endpoints', () => {
   it('should throw error with message; {\"error\":\"invalid URL\"}, with status code; \'400\'  when invalid URL is written', async () => {
     const res = await request(app)
@@ -45,10 +45,17 @@ describe('Post Nonexistent Address', () => {
   })
 })
 
-describe('GET - URL Direction', () => {
-  it('should perform GET and the status code should be 302', async () => {
-    const requestGet = '/RdXgUTT';
-    const respond = await request(app).get(requestGet);
-    expect(respond.statusCode).toBe(302);
+describe('GET', () => {
+  it('should perform GET with uniqueStringID', async () => {
+    const res = await request(app)
+      .post('/longUrl')
+      .send({
+        url: "https://www.npmjs.com/package/supertest"
+      })
+    expect(res.statusCode).toBe(200);
+    expect(res.body).toHaveProperty('uniqueStringID');
+    const requestGet = res.body['uniqueStringID'];
+    const resp = await request(app).get('/'+JSON.stringify(requestGet));
+    expect(resp.statusCode).toEqual(200)
   })
 })
