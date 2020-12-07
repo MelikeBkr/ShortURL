@@ -15,7 +15,7 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')))
 
 
-MongoClient.connect(databaseUrl, { useNewUrlParser: true, useUnifiedTopology: true })
+MongoClient.connect( databaseUrl,  { useNewUrlParser: true, useUnifiedTopology: true })
   .then(client => {
     app.locals.db = client.db('shortener');
   })
@@ -56,7 +56,7 @@ app.post('/longUrl', (req, res) => {
   dns.lookup(originalUrl.hostname, (err) => {
     if (err) {
       return res.status(404).send({error: 'Address not found!'});
-    };
+    }
 
     const { db } = req.app.locals;
     shortenURL(db, originalUrl.href)
@@ -89,3 +89,6 @@ app.set('port', 8080);
 const server = app.listen(app.get('port'), () => {
   console.log(`Server is running → PORT ${server.address().port}`);
 });
+
+module.exports = app;
+

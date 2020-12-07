@@ -36,6 +36,14 @@ Validity check for the URL
 
 #### db.js (Database Operations)
 
+### Tests
+```
+Modules
+supertest -> provides abstraction for testing HTTP
+```
+
+Jest is used as a test framework.
+
 ## Architecture:
 - 3-Tier Architecture is used
 - APIs are based on REST
